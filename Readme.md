@@ -1,1 +1,1 @@
-Code for the work "EPC-Net: A Coarse-to-Fine Cascade Framework with Auto-Context for High-Resolution Orbital Bone Segmentation"
+Code and support information for the work "Fast and Topology-Robust Orbital Bone Segmentation to Support Patient-Specific Implant Design"
