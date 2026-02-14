@@ -1,6 +1,6 @@
-# EPC-Net GUI — Orbital Bone Segmentation for PSI Workflows
+# Better Orbital Bone Segmentation for PSI Workflows
 
-EPC-Net GUI is a desktop application for **orbital bone segmentation on CBCT/CT**, built for **virtual surgical planning** and **patient-specific implant (PSI)** reconstruction.  It follows a **two-stage cascade**: (1) **eye (globe) segmentation** to localize the orbit, then (2) **eye-guided orbital bone segmentation** for improved thin-wall completeness.
+This work is proposed as a desktop (Windows 11 only) application for **orbital bone segmentation on CBCT/CT**, built for **virtual surgical planning** and **patient-specific implant (PSI)** reconstruction.  It follows a **two-stage cascade**: (1) **eye (globe) segmentation** to localize the orbit, then (2) **eye-guided orbital bone segmentation** for improved thin-wall completeness.
 <p align="center">
 <img src="https://github.com/user-attachments/assets/76a55bd0-e732-4ac8-8128-e797072595db" alt="Study-Design" width="500">
 </p>
