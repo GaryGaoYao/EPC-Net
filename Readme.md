@@ -1,4 +1,4 @@
-# Better Orbital Bone Segmentation for PSI Workflows
+# A Better Orbital Bone Segmentation Tool for PSI Workflows
 
 This work is proposed as a desktop (Windows 11 only) application for **orbital bone segmentation on CBCT/CT**, built for **virtual surgical planning** and **patient-specific implant (PSI)** reconstruction.  It follows a **two-stage cascade**: (1) **eye (globe) segmentation** to localize the orbit, then (2) **eye-guided orbital bone segmentation** for improved thin-wall completeness.
 <p align="center">
@@ -28,6 +28,8 @@ To be published~
 ---
 
 ## Quick Start
+
+We will publish our tool in our website online for faster usage soon.
 
 1. **Read and accept the Software Use Notice (required).**  
    By using this software, you acknowledge that it is provided **for research/educational use only**, **not for clinical or medical use**, and that the authors/institutions assume **no liability** for any outcomes resulting from its use.
