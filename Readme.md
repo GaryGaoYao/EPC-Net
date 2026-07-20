@@ -16,10 +16,6 @@ This work is proposed as a desktop (Windows 11 only) application for **orbital b
   - Masks: `pred_eye.nii.gz`, `pred_bone.nii.gz` (intermediate products)
   - Mesh: `bone_surface.stl` (final output)
 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/288601a0-2ebb-4e8e-84c7-786d63a6f798" alt="Study-Design" width="600">
-</p>
-
 ---
 ## Demo Video
 
