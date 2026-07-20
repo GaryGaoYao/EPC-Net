@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Stage 1: train a 3D SegResNet eye-region locator.
 
-Expected dataset layout (nnU-Net style)::
+Expected dataset layout:
 
     DATASET_ROOT/
     ├── imagesTr/
