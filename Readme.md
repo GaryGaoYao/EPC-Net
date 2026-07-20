@@ -10,7 +10,7 @@ The application uses a two-stage pipeline:
 <p align="center">
   <img src="https://github.com/user-attachments/assets/76a55bd0-e732-4ac8-8128-e797072595db"
        alt="Orbital bone segmentation workflow"
-       width="550">
+       width="500">
 </p>
 
 ## Features
