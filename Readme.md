@@ -67,15 +67,6 @@ The generated STL model can be opened in commonly used medical image-processing 
 
 ## Installation
 
-Download the latest packaged Windows version from the **Releases** section of this repository.
-
-The application is distributed as a Windows executable or installer and does not require users to manually configure Python or install the required software dependencies.
-
-> [!IMPORTANT]
-> **Only the CPU version is currently provided to simplify deployment and installation.**
->
-> A GPU-accelerated version may be released separately in the future, depending on availability and maintenance requirements. As a result, inference with the current CPU version may be considerably slower, especially when processing large CT or CBCT datasets.
-
 ### System Requirements
 
 - Windows 11
@@ -83,6 +74,21 @@ The application is distributed as a Windows executable or installer and does not
 - NVIDIA GPU with CUDA support recommended for faster inference
 - CPU-only execution is supported when a compatible GPU is unavailable
 - Sufficient disk space for the application, model weights, input images, and generated STL files
+
+### Download
+
+<p align="center">
+  <a href="https://github.com/GaryGaoYao/EPC-Net/releases/latest">
+    <img src="https://img.shields.io/badge/View%20Downloads-GitHub%20Releases-blue?style=for-the-badge&logo=github">
+  </a>
+</p>
+
+<p align="center">
+  Windows 10/11 · 64-bit · No Python installation required
+</p>
+
+> [!IMPORTANT]
+> The current release provides CPU-based inference for easier installation and broader compatibility. Processing may be slower for large CT or CBCT datasets. Additional versions may be added in future releases.
 
 ## Model Weight Access
 
