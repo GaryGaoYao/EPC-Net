@@ -2,9 +2,7 @@ EPC-Net Model Weights
 
 The trained model weights are not included in this repository.
 
-To request access, please visit the Zenodo record below and follow the access instructions:
-
-Zenodo: [LINK TO BE UPDATED]
+To request access, please fill and sign the apply form.
 
 After approval, download the model files and place them directly in this folder:
 
