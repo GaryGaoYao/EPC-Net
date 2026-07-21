@@ -79,17 +79,16 @@ The application is distributed as a Windows executable or installer and does not
 - CPU-only execution is supported when a compatible GPU is unavailable
 - Sufficient disk space for the application, model weights, input images, and generated STL files
 
-## Model Weights
+## Model Weight Access
 
-The trained EPC-Net model weights are not included in the installer or source-code repository.
+To request access to the model weights:
 
-Users must submit an access request and sign the corresponding research-use statement before receiving access to the model weights.
+1. Open the PDF in the [`weights`](./weights) folder:  
+   [`Model Weight Access Request and Research-Use Statement.pdf`](./weights/Model%20Weight%20Access%20Request%20and%20Research-Use%20Statement.pdf)
+2. Complete all required fields and sign the document.
+3. Return the signed PDF to the project team for verification.
 
-**Model access:** To be updated
-
-After approval, download the model package and configure the model locations through the **Model Settings** panel in the application.
-
-Detailed installation and configuration instructions will be provided together with the approved model package.
+Approved applicants will receive access to the model weights through a **Google Drive link within five business days**.
 
 ## Usage
 
