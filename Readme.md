@@ -71,6 +71,11 @@ Download the latest packaged Windows version from the **Releases** section of th
 
 The application is distributed as a Windows executable or installer and does not require users to manually configure Python or install the required software dependencies.
 
+> [!IMPORTANT]
+> **Only the CPU version is currently provided to simplify deployment and installation.**
+>
+> A GPU-accelerated version may be released separately in the future, depending on availability and maintenance requirements. As a result, inference with the current CPU version may be considerably slower, especially when processing large CT or CBCT datasets.
+
 ### System Requirements
 
 - Windows 11
