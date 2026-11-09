@@ -1,0 +1,16 @@
+# OPTIONAL high-resolution profile (extension, NOT the paper's Table 2 setting).
+# Stage II at 0.5 mm isotropic instead of 0.5 x 0.5 x 1.0 mm: 38/43 cases of Dataset777 have
+# slices thinner than 1.0 mm (19 at <= 0.5 mm), so this keeps more of the native z-resolution
+# of the 0.2-0.4 mm orbital floor / medial wall.  Everything else (cascade, priors G/W, losses,
+# sampling, optimiser, early stopping) is unchanged.  Report it as a deviation if published.
+#
+# Stack it on top of the local paths config:
+#   python -m epcnet train --stage 2 -c configs/local_dataset777.yaml -c configs/highres_isotropic.yaml
+experiment: epcnet_highres_iso05
+
+data:
+  cache_dir: D:/Codes/ECP-Net-BSPC-Github/epcnet_work/cache_iso05   # separate cache (~0.45 GB / case)
+
+stage2:
+  spacing: [0.5, 0.5, 0.5]
+  patch_size: [160, 160, 128]     # 80 x 80 x 64 mm; ~30 GB VRAM at batch 2 with AMP (RTX A6000 48 GB)

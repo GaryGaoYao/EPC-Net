@@ -1,0 +1,122 @@
+# =============================================================================
+# EPC-Net default configuration
+# Values follow Table 2 and Sections 3.5-3.9 of
+#   Gao et al., "Fast and anatomy-guided orbital bone segmentation to support
+#   Patient-Specific Implant design", Biomed. Signal Process. Control 130 (2027) 111465.
+# Any key can be overridden from the command line, e.g.
+#   python -m epcnet train --stage 2 -o prior.sigma=3.5 -o experiment=sigma3.5
+# =============================================================================
+
+experiment: epcnet_default          # run folder name under runs_dir
+runs_dir: ./runs
+seed: 42
+
+data:
+  # nnU-Net raw dataset folder (contains imagesTr/, labelsTr/, dataset.json).
+  # If null, it is built from the environment variable nnUNet_raw + dataset.
+  raw_dir: null
+  dataset: Dataset777_OrbitBoneEye
+  bone_label: bone                  # label name (from dataset.json) or integer value
+  orbit_label: eyes                 # orbital content label name or integer value
+  cache_dir: ./epcnet_cache         # preprocessed arrays (about 0.25 GB per case)
+  split_file: ./splits/epcnet_split.json
+  num_workers: 6                    # DataLoader workers (crop only; augmentation runs on the GPU)
+  preprocess_workers: 2             # parallel processes for preprocessing (RAM-heavy)
+
+preprocess:
+  orientation: RAS
+  percentiles: [0.5, 99.5]          # robust percentile scaling to [0, 1]
+
+# ---------------------------------------------------------------- network ----
+model:                              # MONAI SegResNet (3D), both stages
+  init_filters: 32
+  dropout_prob: 0.2
+  num_groups: 8                     # Group Normalization
+  blocks_down: [1, 2, 2, 4]
+  blocks_up: [1, 1, 1]
+
+# ------------------------------------------------- shared training settings ----
+train:
+  optimizer: adamw
+  lr: 1.0e-4
+  weight_decay: 1.0e-5
+  scheduler: cosine
+  eta_min: 1.0e-6
+  batch_size: 2
+  max_epochs: 500
+  patience: 50                      # early stopping (epochs without val-Dice gain)
+  iterations_per_epoch: 250         # 250 x batch 2 = 500 freshly sampled patches per epoch
+                                    # (same sampling budget per epoch as the nnU-Net baseline;
+                                    #  ~45 s/epoch on an RTX A6000 -> total time in line with Table 9)
+  val_interval: 1
+  amp: true
+  grad_clip: null                   # e.g. 12.0; the paper does not use clipping
+  sw_overlap: 0.25                  # sliding-window overlap during validation
+  sw_batch_size: 8                  # windows per forward pass in validation (48 GB GPU; use 2 for <16 GB)
+  val_device: cuda                  # where full-volume validation logits live (cuda|cpu)
+  tie_tolerance: 1.0e-4             # Dice ties are broken by lower HD95
+
+augment:
+  flip_prob: 0.5                    # left-right flip
+  rotate_deg: 10.0
+  rotate_prob: 0.3
+  scale_range: [0.90, 1.10]         # isotropic scaling
+  scale_prob: 0.3
+  intensity_shift: 0.10             # CT channel only
+  contrast_range: [0.90, 1.10]      # scaling about the patch mean
+  noise_std: 0.05
+  intensity_prob: 0.3
+  crop_margin: 1.25                 # crop larger on CPU, rotate/scale + centre-crop on the GPU
+
+# --------------------------------------------- Stage I: orbital content ----
+stage1:
+  spacing: [1.0, 1.0, 1.0]
+  patch_size: [128, 128, 128]
+  in_channels: 1
+  out_channels: 2
+
+# ------------------------------------------------- Stage II: orbital bone ----
+stage2:
+  spacing: [0.5, 0.5, 1.0]
+  patch_size: [160, 160, 96]
+  out_channels: 2
+  use_guidance: true                # feature prior G as 2nd input channel   (ablation "+Feat")
+  use_weighted_loss: true           # optimisation prior W in Dice + CE      (ablation "+Loss")
+  focus_prob: 0.9                   # fraction of patch centres drawn from the peri-orbital band
+
+prior:
+  sigma: 5.0                        # mm, spatial fall-off
+  alpha: 6.0                        # weighting strength
+  delta: 1.5                        # mm, dilation of predicted orbital content
+  d_max: 25.0                       # mm, peri-orbital band for focused sampling
+  source: pred                      # pred = Stage-I predictions (paper); gt = ground-truth masks
+  threshold: 0.5                    # Stage-I probability -> binary mask
+  dist_cap: 60.0                    # mm, distances are clipped here (G~0, W~1 beyond)
+
+# -------------------------------------------------------------- inference ----
+inference:
+  sw_overlap: 0.5
+  sw_batch_size: 4                  # falls back automatically on CUDA out-of-memory
+  sw_mode: gaussian
+  threshold: 0.5
+  amp: true
+
+surface:                            # Sec. 3.9
+  gaussian_sigma_vox: 1.0
+  iso_level: 0.5
+  laplacian_iterations: 20
+  relaxation: 0.01
+  coordinates: LPS                  # LPS = DICOM/Mimics/3D Slicer convention; or RAS
+
+evaluation:
+  po_roi_factors: [1.1, 1.3, 1.5, 1.7, 1.9]
+
+release:                            # written into manifest.json / ACCESS_TERMS.md of `epcnet export`
+  weights_name: EPC-Net public-data weights
+  training_data: publicly available CT data only (no in-house clinical data)
+  access: restricted - released on request after written approval by the corresponding authors
+  contacts:
+    - Jeroen Van Dessel <jeroen.vandessel@kuleuven.be>
+    - Robin Willaert <robin.willaert@icloud.com>
+    - Yi Sun <yi.sun@uzleuven.be>
+  cc: Yao Gao <yao.gao@kuleuven.be>

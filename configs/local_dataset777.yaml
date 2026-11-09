@@ -1,0 +1,13 @@
+# Local paths for the Dataset777_OrbitBoneEye nnU-Net dataset (Windows workstation).
+# Everything not listed here comes from epcnet/default_config.yaml (paper settings).
+experiment: epcnet_default
+runs_dir: D:/Codes/ECP-Net-BSPC-Github/epcnet_work/runs
+
+data:
+  raw_dir: D:/Codes/Orbital-Segmentation-nnUNet/nnunet_data/nnUNet_raw/Dataset777_OrbitBoneEye
+  cache_dir: D:/Codes/ECP-Net-BSPC-Github/epcnet_work/cache
+  split_file: D:/Codes/ECP-Net-BSPC-Github/epcnet_work/splits/epcnet_split.json
+  bone_label: bone          # dataset.json: background 0, bone 1, eyes 2
+  orbit_label: eyes
+  num_workers: 6             # crop-only workers; augmentation runs on the GPU
+  preprocess_workers: 3     # each worker needs up to ~8 GB RAM for the largest 0.3 mm head CT

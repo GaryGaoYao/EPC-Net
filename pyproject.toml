@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epcnet"
+version = "1.0.0"
+description = "EPC-Net: Eye-Prior Cascade Network for anatomy-guided orbital bone segmentation (PSI design)"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Yao Gao", email = "yao.gao@kuleuven.be" }]
+keywords = ["orbital bone segmentation", "patient-specific implant", "MONAI", "SegResNet", "CT"]
+dependencies = [
+  "torch>=2.1",
+  "monai>=1.3,<2.0",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "nibabel>=5.0",
+  "SimpleITK>=2.3",
+  "scikit-image>=0.21",
+  "pyyaml>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/GaryGaoYao/EPC-Net"
+Paper = "https://doi.org/10.1016/j.bspc.2026.111465"
+
+[project.scripts]
+epcnet = "epcnet.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["epcnet*"]
+
+[tool.setuptools.package-data]
+epcnet = ["default_config.yaml"]
