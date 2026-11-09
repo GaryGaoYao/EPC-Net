@@ -41,7 +41,7 @@ For each case, `output/` contains:
 
 All masks are on the original image grid.
 
-You can also run EPC-Net from the desktop GUI in [`gui/`](gui), or from 3D Slicer with the extension in [`slicer/`](slicer).
+You can also run EPC-Net from the desktop GUI in [`gui/`](gui), or from 3D Slicer with the extension (to be updated...).
 
 ## Training on your own data
 
