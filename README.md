@@ -20,7 +20,7 @@ pip install -e .
 
 ## Prediction
 
-1. Request the model weights (see [Model weights](#model-weights)).
+1. Request the model weights by e-mail (see [Model weights](#model-weights)).
 2. Put `stage1_eye.pth` and `stage2_bone.pth` in `weights/`.
 3. Run:
 
@@ -86,7 +86,17 @@ On Windows, all of these steps run in one go with `.\scripts\train_epcnet.ps1 -C
 
 ## Model weights
 
-The weights are not included in this repository. To request them, e-mail the signed form in [`weights/`](weights) to the corresponding authors. Access is granted after their approval.
+The weights are trained on public data and are not included in this repository. To get them:
+
+1. Fill in and sign the one-page [request form](weights/Model%20Weight%20Access%20Request%20and%20Research-Use%20Statement.pdf).
+2. E-mail it to the corresponding authors with the subject `EPC-Net weight request – <your name>, <institution>`:
+   - Jeroen Van Dessel — jeroen.vandessel@kuleuven.be
+   - Robin Willaert — robin.willaert@icloud.com
+   - Yi Sun — yi.sun@uzleuven.be
+3. After the authors approve your request, you will receive a download link.
+
+The weights are for non-commercial research only and may not be shared.
+The original weights used in the paper were trained on hospital data; whether they can be shared depends on the decision of the hospital and its Ethics Committee.
 
 ## Disclaimer
 
