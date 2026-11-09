@@ -1,6 +1,6 @@
 # EPC-Net — anatomy-guided orbital bone segmentation
 
-Reference implementation of **EPC-Net (Eye-Prior Cascade Net)** from
+Reference implementation of **EPC-Net (Eye-Prior Cascade Net)** for
 
 > Y. Gao, P. D. Gómez, X. Du, F. Li, L. Tian, J. Van Dessel, R. Willaert, Y. Sun.
 > *Fast and anatomy-guided orbital bone segmentation to support Patient-Specific Implant design.*
